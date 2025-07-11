@@ -1,2 +1,2 @@
-content="fregadero"
+content="fregadero nuevo"
 print(content+" valorado")
