@@ -1,4 +1,4 @@
 nombre="pepe"
-apellido="moreira aragundi"
+apellido="moreira"
 saludo=nombre+" "+apellido+" como estas"
 print(saludo)
