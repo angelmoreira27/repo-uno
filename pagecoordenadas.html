@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conversor UTM TMQ → WGS84 (Quito)</title>
+
+    <!-- Proj4JS (equivalente a pyproj pero en JS) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+        input {
+            padding: 8px;
+            margin: 6px 0;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Conversor de Coordenadas<br> UTM TMQ → Geográficas (WGS84)</h2>
+
+<label>Easting (X):</label><br>
+<input id="easting" type="text" placeholder="Ej: 500123.45"><br>
+
+<label>Northing (Y):</label><br>
+<input id="northing" type="text" placeholder="Ej: 9987654.21"><br>
+
+<button onclick="convertir()">Convertir</button>
+
+<div class="resultado" id="resultado"></div>
+
+<script>
+// Definición de la proyección TMQ usada en Quito (la que sacaste del ArcGIS)
+proj4.defs("TMQ",
+    "+proj=tmerc +lat_0=0 +lon_0=-78.5 " +
+    "+k=1.000458 +x_0=500000 +y_0=10000000 " +
+    "+datum=WGS84 +units=m +no_defs"
+);
+
+// Conversión
+function convertir() {
+    let e = document.getElementById("easting").value.trim();
+    let n = document.getElementById("northing").value.trim();
+
+    // Cambiar comas por puntos
+    e = e.replace(",", ".");
+    n = n.replace(",", ".");
+
+    // Validación básica
+    if (isNaN(e) || isNaN(n) || e === "" || n === "") {
+        document.getElementById("resultado").innerHTML = "❌ Ingresa números válidos.";
+        return;
+    }
+
+    // Convertir usando Proj4JS
+    let [lon, lat] = proj4("TMQ", "WGS84", [parseFloat(e), parseFloat(n)]);
+
+    document.getElementById("resultado").innerHTML =
+        "Latitud: " + lat.toFixed(8) + "<br>" +
+        "Longitud: " + lon.toFixed(8);
+}
+</script>
+
+</body>
+</html>
