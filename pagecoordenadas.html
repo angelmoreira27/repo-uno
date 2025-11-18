@@ -72,9 +72,11 @@ function convertir() {
 
     document.getElementById("resultado").innerHTML =
         "Latitud: " + lat.toFixed(8) + "<br>" +
-        "Longitud: " + lon.toFixed(8);
+        "Longitud: " + lon.toFixed(8)+ "<br>" +
+		"<a href='https://www.google.com/maps/search/"+lat.toFixed(8)+","+lon.toFixed(8)+"'>Ver Mapa</a>";
 }
 </script>
 
 </body>
+
 </html>
