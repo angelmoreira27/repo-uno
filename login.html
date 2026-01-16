@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+</head>
+<body>
+
+<h2>Iniciar sesión</h2>
+
+<input id="email" type="email" placeholder="Correo"><br><br>
+<input id="password" type="password" placeholder="Contraseña"><br><br>
+<button onclick="login()">Entrar</button>
+
+<p id="msg"></p>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCGD1GAsVACqFFEep3pYGZIWIIcGUAQaaM",
+  authDomain: "coordenadasepmaps.firebaseapp.com",
+  projectId: "coordenadasepmaps",
+  storageBucket: "coordenadasepmaps.firebasestorage.app",
+  messagingSenderId: "433765343226",
+  appId: "1:433765343226:web:57f7af33733ba4d22e0e43",
+  measurementId: "G-PMYD7BBR0K"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = function() {
+  const email = email.value;
+  const password = password.value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      window.location.href = "panel.html";
+    })
+    .catch(err => {
+      msg.innerText = err.message;
+    });
+}
+</script>
+
+</body>
+</html>
