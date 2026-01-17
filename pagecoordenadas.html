@@ -58,7 +58,9 @@ window.logout = function() {
 <body>
 
 <h2>Conversor de Coordenadas<br> UTM TMQ → Geográficas (WGS84)</h2>
-
+<p>Bienvenido</p>
+<button onclick="logout()">Cerrar sesión</button>
+    
 <label>Easting (X):</label><br>
 <input id="easting" type="text" placeholder="Ej: 500123.45"><br>
 
@@ -71,9 +73,17 @@ window.logout = function() {
 
 <!-- 🔥 Cargar tu JS externo -->
 <script src="js/main.js"></script>
-
+<script>
+window.logout = function() {
+  signOut(auth).then(() => {
+    localStorage.removeItem("lastActivity");
+    window.location.href = "login.html";
+  });
+}
+</script>
 </body>
 </html>
+
 
 
 
