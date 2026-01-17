@@ -1,49 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Iniciar sesión</h2>
+<div class="login-container">
+  <div class="login-box">
 
-<input id="email" type="email" placeholder="Correo"><br><br>
-<input id="password" type="password" placeholder="Contraseña"><br><br>
-<button onclick="login()">Entrar</button>
+    <img src="https://asiste.com.ec/wp-content/uploads/2019/03/logo_color.png" class="logo">
 
-<p id="msg"></p>
+    <h2>Iniciar sesión</h2>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    <input id="email" type="email" placeholder="Correo">
+    <input id="password" type="password" placeholder="Contraseña">
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCGD1GAsVACqFFEep3pYGZIWIIcGUAQaaM",
-  authDomain: "coordenadasepmaps.firebaseapp.com",
-  projectId: "coordenadasepmaps",
-  storageBucket: "coordenadasepmaps.firebasestorage.app",
-  messagingSenderId: "433765343226",
-  appId: "1:433765343226:web:57f7af33733ba4d22e0e43",
-  measurementId: "G-PMYD7BBR0K"
-};
+    <button id="btnLogin">Ingresar</button>
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+    <p id="msg"></p>
 
-window.login = function() {
- const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const msg = document.getElementById("msg");
+  </div>
+</div>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      window.location.href = "pagecoordenadas.html";
-    })
-    .catch(err => {
-      msg.innerText = err.message;
-    });
-}
+<script src="js/validatorlog.js">
+
 </script>
 
 </body>
